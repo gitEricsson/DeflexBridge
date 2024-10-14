@@ -1,0 +1,6 @@
+service: () -> {
+    createTransaction: (text, text, text, text, nat64) -> (variant {Ok:record {id:text; status:text; toChain:text; fromAddress:text; createdAt:nat64; updatedAt:nat64; signatures:vec text; toAddress:text; amount:nat64; fromChain:text}; Err:text});
+    getTransaction: (text) -> (variant {Ok:record {id:text; status:text; toChain:text; fromAddress:text; createdAt:nat64; updatedAt:nat64; signatures:vec text; toAddress:text; amount:nat64; fromChain:text}; Err:text}) query;
+    signTransaction: (text, text) -> (variant {Ok:record {id:text; status:text; toChain:text; fromAddress:text; createdAt:nat64; updatedAt:nat64; signatures:vec text; toAddress:text; amount:nat64; fromChain:text}; Err:text});
+    updateTransactionStatus: (text, text) -> (variant {Ok:record {id:text; status:text; toChain:text; fromAddress:text; createdAt:nat64; updatedAt:nat64; signatures:vec text; toAddress:text; amount:nat64; fromChain:text}; Err:text});
+}

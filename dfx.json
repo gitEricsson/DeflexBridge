@@ -1,0 +1,45 @@
+{
+    "canisters": {
+      "wallet": {
+        "main": "src/canisters/wallet.ts",
+        "type": "azle",
+        "root": "src/canisters",
+        "ts": "src/canisters/wallet.ts",
+        "candid": "src/candid/wallet.did",
+        "wasm": ".azle/wallet/wallet.wasm"
+      },
+      "exchange": {
+        "main": "src/canisters/exchange.ts",
+        "type": "azle",
+        "root": "src/canisters",
+        "ts": "src/canisters/exchange.ts",
+        "candid": "src/candid/exchange.did",
+        "wasm": ".azle/exchange/exchange.wasm"
+      },
+      "crossChain": {
+        "main": "src/canisters/crossChain.ts",
+        "type": "azle",
+        "root": "src/canisters",
+        "ts": "src/canisters/crossChain.ts",
+        "candid": "src/candid/crossChain.did",
+        "wasm": ".azle/crossChain/crossChain.wasm"
+      }
+    },
+    "defaults": {
+      "build": {
+        "args": "",
+        "packtool": ""
+      }
+    },
+    "networks": {
+      "local": {
+        "bind": "127.0.0.1:4325",
+        "type": "ephemeral"
+      },
+      "ic": {
+        "providers": ["https://mainnet.dfinity.network"],
+        "type": "persistent"
+      }
+    },
+    "version": 1
+  }

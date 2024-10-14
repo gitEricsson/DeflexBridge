@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+"target": "ES2020",     
+"module": "commonjs",
+    "outDir": "./dist",
+    // "types": ["node"],
+    "allowJs": true,
+    "lib": ["es2017", "dom"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["azle"],
+    "allowArbitraryExtensions": true
+  },
+  "include": ["./*.ts", "src/**/*"]
+}

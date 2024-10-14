@@ -1,0 +1,11 @@
+node_modules
+dist/
+.azle
+.dfx
+.env
+coverage
+.env.test
+.rest
+.vscode/
+package-lock.json
+config.env
