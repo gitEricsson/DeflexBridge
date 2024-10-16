@@ -10,7 +10,7 @@ const crossChainBridgeService = new CrossChainBridgeService(crossChainService, g
 export const initiateTransfer = async (req: Request, res: Response) => {
     const { fromChain, toChain, token, amount, fromAddress, toAddress } = req.body;
     try {
-        const transactionId = await crossChainBridgeService.initiateTransfer(fromChain, toChain, token, BigInt(amount), fromAddress, toAddress);
+        const transactionId = await crossChainBridgeService.initiateTransfer(fromChain, toChain, token, amount, fromAddress, toAddress);
         res.json({ success: true, transactionId });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
