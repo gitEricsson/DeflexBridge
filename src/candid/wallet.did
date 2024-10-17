@@ -1,5 +1,7 @@
 service: () -> {
     createWallet: (text) -> (variant {Ok:record {id:text; balance:nat64; owner:text; createdAt:nat64; updatedAt:nat64}; Err:text});
+    deleteWallet: (text) -> (variant {Ok:record {id:text; balance:nat64; owner:text; createdAt:nat64; updatedAt:nat64}; Err:text});
     getWallet: (text) -> (variant {Ok:record {id:text; balance:nat64; owner:text; createdAt:nat64; updatedAt:nat64}; Err:text}) query;
+    getWalletByOwner: (text) -> (variant {Ok:record {id:text; balance:nat64; owner:text; createdAt:nat64; updatedAt:nat64}; Err:text}) query;
     updateWalletBalance: (text, nat64) -> (variant {Ok:record {id:text; balance:nat64; owner:text; createdAt:nat64; updatedAt:nat64}; Err:text});
 }

@@ -13,11 +13,25 @@ export class NFIDAuth {
   }
 
   async getIdentity(): Promise<Identity | undefined> {
+    // async getIdentity(): Promise<{ principal: string; email?: string }> {
+
     if (!this.authClient) {
       throw new Error("AuthClient not initialized");
     }
+
+    const identity = this.authClient.getIdentity();
+
+    // const email = await this.getUserEmail(identity);
+    // return { principal: identity.getPrincipal().toString(), email };
     return this.authClient.getIdentity();
   }
+
+  async getUserEmail(identity: Identity): Promise<string | undefined> {
+    // Placeholder; Will Integrate MongoDB to store user data later
+    return "user@example.com";
+  }
+
+
 
   async isAuthenticated(): Promise<boolean> {
     if (!this.authClient) {

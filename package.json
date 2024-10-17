@@ -30,6 +30,7 @@
     "ethers": "^5.7.2",
     "express": "^4.19.2",
     "helmet": "^3.16.0",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "regenerator-runtime": "^0.14.1",
     "sharp": "^0.31.3",

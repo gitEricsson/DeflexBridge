@@ -79,7 +79,7 @@ const ExchangeIDL = IDL.Record({
     rate: IDL.Nat64,
     status: IDL.Text,
     createdAt: IDL.Nat64,
-    updatedAt: IDL.Nat64
+    updatedAt: IDL.Nat64,
 });
 
 class ExchangeCanister {
@@ -93,25 +93,30 @@ class ExchangeCanister {
             : { Err: `Exchange with id=${id} not found` };
     }
 
-    @update([IDL.Text, IDL.Text, IDL.Nat64, IDL.Nat64], IDL.Variant({ Ok: ExchangeIDL, Err: IDL.Text }))
-    createExchange(
+    @update([IDL.Text, IDL.Text, IDL.Nat64], IDL.Variant({ Ok: ExchangeIDL, Err: IDL.Text }))
+    async createExchange(
         fromToken: string,
         toToken: string,
         amount: bigint,
         rate: bigint
-    ): { Ok?: Exchange; Err?: string } {
-        const exchange: Exchange = {
-            id: uuidv4(),
-            fromToken,
-            toToken,
-            amount,
-            rate,
-            status: 'PENDING',
-            createdAt: BigInt(Date.now()),
-            updatedAt: BigInt(Date.now()),
-        };
-        this.exchangeStorage.insert(exchange.id, exchange);
-        return { Ok: exchange };
+    ): Promise<{ Ok?: Exchange; Err?: string }> {
+        try {
+
+            const exchange: Exchange = {
+                id: uuidv4(),
+                fromToken,
+                toToken,
+                amount,
+                rate,
+                status: 'PENDING',
+                createdAt: BigInt(Date.now()),
+                updatedAt: BigInt(Date.now()),
+            };
+            this.exchangeStorage.insert(exchange.id, exchange);
+            return { Ok: exchange };
+        } catch (error) {
+            return { Err: `Error creating exchange: ${error.message}` };
+        }
     }
 
     @update([IDL.Text, IDL.Text], IDL.Variant({ Ok: ExchangeIDL, Err: IDL.Text }))
@@ -133,6 +138,7 @@ class ExchangeCanister {
         return { Ok: updatedExchange };
     }
 }
+
 
 type Exchange = {
     id: string;

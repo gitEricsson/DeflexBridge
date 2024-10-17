@@ -1,0 +1,9 @@
+import { Router } from 'express';
+import { createExchange, getExchange } from './../controllers/exchangeController';
+
+const router = Router();
+
+router.post('/createExchange', createExchange);
+router.get('/getExchange/:id', getExchange);
+
+export default router;

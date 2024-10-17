@@ -1,4 +1,4 @@
-import { Actor, HttpAgent } from '@dfinity/agent';
+import { Actor, Identity, HttpAgent } from '@dfinity/agent';
 import { idlFactory } from '../declarations/wallet.did';
 import { getCanisterId } from './../utils/canisterUtils';
 
@@ -7,6 +7,7 @@ export class WalletService {
 
   constructor() {
     const agent = new HttpAgent();
+
     this.actor = Actor.createActor(idlFactory, {
       agent,
       canisterId: getCanisterId('wallet'),
@@ -18,13 +19,22 @@ export class WalletService {
   }
 
   async createWallet(owner: string) {
+    const existingWallet = await this.actor.getWalletByOwner(owner);
+    if (existingWallet.Ok) {
+      throw new Error(`Wallet for owner ${owner} already exists.`);
+    }
     return this.actor.createWallet(owner);
   }
 
   async updateWalletBalance(id: string, amount: bigint) {
     return this.actor.updateWalletBalance(id, amount);
   }
+
+  async deleteWallet(id: string) {
+    return this.actor.deleteWallet(id);
+  }
 }
+
 
 // // src/canisters/wallet/wallet.ts
 // import { Principal } from "@dfinity/agent";

@@ -1,5 +1,5 @@
 service: () -> {
-    createExchange: (text, text, nat64, nat64) -> (variant {Ok:record {id:text; status:text; createdAt:nat64; rate:nat64; updatedAt:nat64; fromToken:text; amount:nat64; toToken:text}; Err:text});
+    createExchange: (text, text, nat64) -> (variant {Ok:record {id:text; status:text; createdAt:nat64; rate:nat64; updatedAt:nat64; fromToken:text; amount:nat64; toToken:text}; Err:text});
     getExchange: (text) -> (variant {Ok:record {id:text; status:text; createdAt:nat64; rate:nat64; updatedAt:nat64; fromToken:text; amount:nat64; toToken:text}; Err:text}) query;
     updateExchangeStatus: (text, text) -> (variant {Ok:record {id:text; status:text; createdAt:nat64; rate:nat64; updatedAt:nat64; fromToken:text; amount:nat64; toToken:text}; Err:text});
 }
