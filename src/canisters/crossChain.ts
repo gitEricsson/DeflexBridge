@@ -133,12 +133,7 @@ const CrossChainTransactionIDL = IDL.Record({
 
 class CrossChainCanister {
     private transactionStorage = StableBTreeMap<string, CrossChainTransaction>(0);
-    private readonly REQUIRED_SIGNATURES = 2;
-    private readonly VALIDATORS = [
-        'rrkah-fqaaa-aaaaa-aaaaq-cai',
-        'r7inp-6aaaa-aaaaa-aaabq-cai',
-        'rwlgt-iiaaa-aaaaa-aaaaa-cai'
-    ];
+    private readonly REQUIRED_SIGNATURES = 1;
 
     @query([IDL.Text], IDL.Variant({ Ok: CrossChainTransactionIDL, Err: IDL.Text }))
     getTransaction(id: string): { Ok?: CrossChainTransaction; Err?: string } {
@@ -199,10 +194,6 @@ class CrossChainCanister {
             return { Err: `Transaction ${id} is not in PENDING state` };
         }
         
-        const caller = 'rrkah-fqaaa-aaaaa-aaaaq-cai'; // Replace this with the correct caller fetch method
-        if (!this.VALIDATORS.includes(caller)) {
-            return { Err: `Caller ${caller} is not authorized to sign transactions` };
-        }
         
         if (tx.signatures.includes(signature)) {
             return { Err: `Signature already exists for transaction ${id}` };
